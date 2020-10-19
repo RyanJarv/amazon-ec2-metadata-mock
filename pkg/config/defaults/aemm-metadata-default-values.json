@@ -1,6 +1,7 @@
 {
   "metadata": {
     "paths": {
+      "user-data": "/latest/user-data",
       "ami-id": "/latest/meta-data/ami-id",
       "ami-launch-index": "/latest/meta-data/ami-launch-index",
       "ami-manifest-path": "/latest/meta-data/ami-manifest-path",
@@ -60,6 +61,7 @@
       "spot-termination-time": "/latest/meta-data/spot/termination-time"
     },
     "values": {
+      "user-data": "echo 'default user data'",
       "ami-id": "ami-0a887e401f7654935",
       "ami-launch-index": "0",
       "ami-manifest-path": "(unknown)",

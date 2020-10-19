@@ -63,6 +63,7 @@ type Dynamic struct {
 
 // Paths represents EC2 metadata paths
 type Paths struct {
+	UserData                     string `mapstructure:"user-data"`
 	AmiID                        string `mapstructure:"ami-id"`
 	AmiLaunchIndex               string `mapstructure:"ami-launch-index"`
 	AmiManifestPath              string `mapstructure:"ami-manifest-path"`
@@ -124,6 +125,7 @@ type Paths struct {
 
 // Values represents config used in the mock responses
 type Values struct {
+	UserData                     string                            `mapstructure:"user-data"`
 	AmiID                        string                            `mapstructure:"ami-id"`
 	AmiLaunchIndex               string                            `mapstructure:"ami-launch-index"`
 	AmiManifestPath              string                            `mapstructure:"ami-manifest-path"`
