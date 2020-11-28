@@ -1,8 +1,8 @@
 VERSION ?= $(shell git describe --tags --always --dirty)
 LATEST_RELEASE_TAG=$(shell git describe --tags --abbrev=0)
 PREVIOUS_RELEASE_TAG=$(shell git describe --abbrev=0 --tags `git rev-list --tags --skip=1  --max-count=1`)
-REPO_FULL_NAME=aws/amazon-ec2-metadata-mock
-IMG ?= amazon/amazon-ec2-metadata-mock
+REPO_FULL_NAME=ryanjarv/amazon-ec2-metadata-mock
+IMG ?= ryanjarv/amazon-ec2-metadata-mock
 IMG_TAG ?= ${VERSION}
 IMG_W_TAG = ${IMG}:${IMG_TAG}
 DOCKERHUB_USERNAME ?= ""
@@ -17,8 +17,8 @@ BUILD_DIR_PATH = ${MAKEFILE_PATH}/build
 BINARY_NAME ?= ec2-metadata-mock
 METADATA_DEFAULTS_FILE=${MAKEFILE_PATH}/pkg/config/defaults/aemm-metadata-default-values.json
 ENCODED_METADATA_DEFAULTS=$(shell cat ${METADATA_DEFAULTS_FILE} | base64 | tr -d '\040\011\012\015')
-DEFAULT_VALUES_VAR=github.com/aws/amazon-ec2-metadata-mock/pkg/config/defaults.encodedDefaultValues
-ROOT_VERSION_VAR=github.com/aws/amazon-ec2-metadata-mock/pkg/cmd/root.version
+DEFAULT_VALUES_VAR=github.com/ryanjarv/amazon-ec2-metadata-mock/pkg/config/defaults.encodedDefaultValues
+ROOT_VERSION_VAR=github.com/ryanjarv/amazon-ec2-metadata-mock/pkg/cmd/root.version
 
 $(shell mkdir -p ${BUILD_DIR_PATH} && touch ${BUILD_DIR_PATH}/_go.mod)
 
