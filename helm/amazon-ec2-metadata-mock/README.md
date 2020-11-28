@@ -10,14 +10,20 @@ Amazon EC2 Metadata Mock(AEMM) Helm chart for Kubernetes. For more information o
 
 The helm chart can be installed from several sources. To install the chart with the release name amazon-ec2-metadata-mock and default configuration, pick a source below:
 
-1. Local chart archive: 
-Download the chart archive from the latest release and run 
+#### Local chart archive
+
+Download and Install the chart archive from the latest release
 ```sh
-helm install amazon-ec2-metadata-mock amazon-ec2-metadata-mock-1.6.0.tgz \
+curl -L https://github.com/aws/amazon-ec2-metadata-mock/releases/download/v1.8.0/amazon-ec2-metadata-mock-1.8.0.tgz
+```
+
+```sh
+helm install amazon-ec2-metadata-mock amazon-ec2-metadata-mock-1.8.0.tgz \
   --namespace default
 ```
 
-2. Unpacked local chart directory: 
+#### Unpacked local chart directory
+
 Download the source code or unpack the archive from latest release and run
 ```sh
 helm install amazon-ec2-metadata-mock ./helm/amazon-ec2-metadata-mock \
@@ -54,7 +60,7 @@ helm install amazon-ec2-metadata-mock ./helm/amazon-ec2-metadata-mock \
 * Passing a config file to AEMM
 
  1. Create a Kubernetes ConfigMap from a custom AEMM configuration file:
-See [Readme](https://github.com/aws/amazon-ec2-metadata-mock#configuration) to learn more about AEMM configuration. [Here](https://github.com/aws/amazon-ec2-metadata-mock/blob/master/test/e2e/testdata/output/aemm-config-used.json) is a reference config file to create your own `aemm-config.json`
+See [Readme](https://github.com/aws/amazon-ec2-metadata-mock#configuration) to learn more about AEMM configuration. [Here](https://github.com/aws/amazon-ec2-metadata-mock/blob/main/test/e2e/testdata/output/aemm-config-used.json) is a reference config file to create your own `aemm-config.json`
 
     Note:
     * AEMM's native config `aemm.server.port` needs to be a fixed value (1338) to be able to run AEMM as a K8s service. So, overriding the `aemm.server.port` in the custom config file will work only when AEMM is accessed via the pod directly. To access the AEMM K8s service on a custom port, override `servicePort` (which is a Helm config).
@@ -204,7 +210,7 @@ Parameter | Description | Default
 
 ### AEMM parameters
 A selective list of AEMM parameters are configurable via Helm CLI and values.yaml file.
-Use the [Kubernetes ConfigMap option](#installing-the-chart-with-overridden-values-for-aemm-configuration) to configure [other AEMM parameters](https://github.com/aws/amazon-ec2-metadata-mock/blob/master/test/e2e/testdata/output/aemm-config-used.json). 
+Use the [Kubernetes ConfigMap option](#installing-the-chart-with-overridden-values-for-aemm-configuration) to configure [other AEMM parameters](https://github.com/aws/amazon-ec2-metadata-mock/blob/main/test/e2e/testdata/output/aemm-config-used.json). 
 
 Parameter | Description | Default in Helm | Default AEMM configuration
 --- | --- | --- | ---
@@ -215,6 +221,7 @@ Parameter | Description | Default in Helm | Default AEMM configuration
 `aemm.imdsv2` | if true, IMDSv2 only works | `false` | `false`, meaning both IMDSv1/v2 work 
 `aemm.spot.action` | action in the spot interruption notice | `""` | `terminate`
 `aemm.spot.time` | time in the spot interruption notice | `""` | HTTP request time + 2 minutes
+`aemm.spot.rebalanceRecTime` | time in the rebalance recommendation notification | `""` | HTTP request time
 `aemm.events.code` | event code in the scheduled event | `""` | `system-reboot`
 `aemm.events.notAfter` | the latest end time for the scheduled event | `""` | Start time of AEMM  + 7 days
 `aemm.events.notBefore` | the earliest start time for the scheduled event | `""` | Start time of AEMM

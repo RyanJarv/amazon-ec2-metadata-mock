@@ -2,7 +2,7 @@
 
 image:
   repository: "amazon/amazon-ec2-metadata-mock"
-  tag: "v1.6.0"
+  tag: "v1.8.0"
   pullPolicy: "IfNotPresent"
 
 # replicaCount defines the number of pods to replicate
@@ -15,6 +15,14 @@ fullnameOverride: ""
 
 # targetNodeOs creates node-OS specific deployments (e.g. "linux", "windows", "linux windows")
 targetNodeOs: "linux"
+
+resources:
+  requests:
+    memory: "64Mi"
+    cpu: "50m"
+  limits:
+    memory: "128Mi"
+    cpu: "100m"
 
 # nodeSelector tells both linux and windows deployments where to place the amazon-ec2-metadata-mock pods
 # By default, this value is empty and every node will receive a pod.
@@ -81,7 +89,7 @@ serviceName: "amazon-ec2-metadata-mock-service"
 
 # aemm represents all the CLI flag configuration for Amazon EC2 Metadata Mock (AEMM)
 # Null / empty values here means that AEMM will run with defaults configured in the tool
-# Refer to the readme for descriptions and defaults - https://github.com/aws/amazon-ec2-metadata-mock/blob/master/helm/amazon-ec2-metadata-mock/README.md
+# Refer to the readme for descriptions and defaults - https://github.com/aws/amazon-ec2-metadata-mock/blob/main/helm/amazon-ec2-metadata-mock/README.md
 aemm:
   server:
     hostname: ""
@@ -92,6 +100,7 @@ aemm:
   spot:
     action: ""
     time: ""
+    rebalanceRecTime: ""
   events:
     code: ""
     notAfter: ""
